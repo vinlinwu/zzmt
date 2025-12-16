@@ -1,0 +1,263 @@
+
+/* CSS Document */
+
+*{padding:0;margin:0;}
+#zt{margin:0 auto;
+width:1920px;
+height:100%;}
+
+#top{
+margin:0 auto;
+widht:1920px;
+height:175px;
+background:url(../image/tou-bj.png) ;}
+#top-a{
+width:960px;
+height:175px;
+margin:0px auto;
+}
+#top-logo{
+	width:960px;
+	height:130px;
+	}
+#logo-zou{
+	float: left;
+	width: 409px;
+	height: 66px;
+	padding-top: 20px;
+	padding-left: 30px;
+	}	
+	#logo-you{
+	float: right;
+	width: 181px;
+	height: 81px;
+	margin-right: 200px;
+	margin-top: 30px;
+		}
+#nav{
+padding-top:10px;
+width:960px;
+height:30px;
+}
+
+#nav ul{
+	list-style:none;  
+	}
+
+#nav ul li{
+padding-left:12px;
+float:left;
+font:15px/2.5 "microsoft yahei";
+}
+
+#nav ul li a{
+display:block;
+width:120px;
+height:30px;
+text-align:center;
+line-height:30px;
+background:url(../image/danhang-bj.jpg) 0 0 no-repeat;
+text-decoration:none;
+color:#431a02;
+}
+#nav ul li a:hover{color:red;}
+
+/* bananer广告滚动 */
+.topvebanner { margin: 0 auto; width: 1920px; height: 600px; overflow: hidden; }
+.topvebanner ul { margin: 0; padding: 0; }
+#myjQuery { BACKGROUND: #000; OVERFLOW: hidden; WIDTH: 1920px; POSITION: relative; HEIGHT: 600px; }
+#myjQueryContent { OVERFLOW: hidden; WIDTH: 1920px; HEIGHT: 600px; }
+#myjQueryContent DIV {
+	POSITION: absolute;
+	HEIGHT: 600px;
+	width: 1920;
+}
+#myjQueryContent .smask { Z-INDEX: -1; }
+#myjQueryContent IMG { WIDTH: 1920px; HEIGHT: 600px; border: 0; }
+#myjQueryNav {
+	DISPLAY: block;
+	OVERFLOW: hidden;
+	WIDTH: 81px;
+	HEIGHT: 8px;
+	position: absolute;
+	top: 582px;
+	right: 10px;
+	z-index: 5;
+}
+#myjQueryNav LI { DISPLAY: block; FLOAT: left; WIDTH: 15px; CURSOR: pointer; HEIGHT: 8px; TEXT-ALIGN: center; margin-left: 1px; background: #666; color: #fff; }
+#myjQueryNav .nbg { BACKGROUND: #666; }
+#myjQueryNav A { DISPLAY: block; Z-INDEX: 12; MARGIN: 0px auto; TEXT-TRANSFORM: uppercase; WIDTH: 45px; COLOR: #ffffff; LINE-HEIGHT: 22px; POSITION: relative; HEIGHT: 22px; z-index: 20; }
+#myjQueryNav .current { BACKGROUND: #347e0d; }
+#myjQueryNav .current A { COLOR: #fff; }
+#myjQuery #flow { background: url(http://www.luojiajifutang.cn/images/fcurrent.gif) no-repeat; margin-top: -33px; WIDTH: 45px; HEIGHT: 22px; Z-INDEX: 22; left: 652px; POSITION: absolute; }
+/* bananer广告滚动结束 */
+
+
+#neirong{
+margin:0 auto;
+width:1920px;
+height:1485px;
+background:url(../image/neirong.png)0 0 no-repeat;
+	}
+#neirong-bk{
+	margin:0 auto;
+	width:1002px;
+	height:1485px;
+	background:url(../image/neirong-bk.png)0 0 no-repeat;}
+#neirong-zt{
+	margin:0 auto;
+	width:875px;
+	height:1485px;
+	}	
+	
+#neirong1{
+	padding-top:30px;
+	width:875px;
+	height:140px;
+	}
+#neirong1-1{
+	padding-top:55px;
+	padding-left:25px;
+	width:500px;
+	height:36px;
+	float:left;
+	line-height:40px;
+	font-size:20px;
+	color:#f6cd0c;
+	}
+#neirong1-1 a{
+	color:#f6cd0c;
+	text-decoration:none;
+	}
+	#neirong1-1 a:hover{color:#431a02;}
+#neirong1-2{
+	padding-top:55px;
+	padding-right:25px;
+	width:36px;
+	height:36px;
+	float:right;}
+#neirong1-3{
+	padding-top:5px;
+	width:875px;
+	height:4px;
+	text-align:center;
+	float:right;}
+
+#neirong2{
+	width:875px;
+	height:1293px;
+	margin:0 auto;
+	background:url(../image/jianjie-bg.png) 0 0 no-repeat;
+	}
+#neirong2-1{width:870px;
+height:525px;
+margin:0 auto;
+}
+#neirong2-2{
+	padding-top:35px;
+	padding-left:90px;
+	width:470px;
+height:358px;
+float:left;
+	}
+#neirong2-3{
+	padding-top:120px;
+	padding-right:25px;
+	width:262px;
+height:309px;
+float:right;}
+#neirong2-4{
+	padding-top: 25px;
+	padding-left: 120px;
+	width: 410px;
+	height: 70px;
+	float: left;
+	text-align: center;
+	font-size: 21px;
+	color: red;
+	}
+#neirong3{
+		width:630px;
+		height:5px;
+		margin:0 auto;
+		border-bottom:1.5px dashed  #333333;}
+#neirong3-1{
+	padding-top:30px;
+	width:650px;
+height:550px;
+margin:0 auto;
+}
+#neirong3-1 ul{width:520px;
+height:550px;
+margin:0 auto;
+	}
+#neirong3-1 ul li{
+	font-size:20px;
+	line-height:45px;}
+#neirong3-1 a{
+	color:#000;
+	text-decoration:none;
+	}
+#neirong3-1 ul li a:hover{color:red;}
+#neirong3-2{
+		width:630px;
+		height:25px;
+		margin:0 auto;
+		border-bottom:1.5px dashed  #333333;}
+#neirong3-3{
+width:870px;
+padding-top:50px;
+margin:0 auto;
+	
+	}
+#neirong3-3 ul{
+	width:390px;
+	margin:0 auto;
+	list-style:none;
+
+	}
+#neirong3-3 ul li{
+	padding-left:1px;
+	float:left;
+	}
+#neirong3-3 li a{
+	display:block;
+	width:32px;
+	height:30px;
+	line-height:30px;
+	text-align:center;
+	text-decoration:none;
+	color:#000;
+	font-size:15px;
+	border:1px  solid #FDD38E;
+	
+}
+
+#neirong3-3 ul a:hover{
+	background:#F00;
+	color:#FF0;}
+
+
+
+
+
+
+
+
+#weibu{
+margin:0 auto;
+width:1920px;
+height:285px;
+background:url(../image/weibu-bj.png) 0 0 no-repeat;}
+#erwei{
+text-align:center;
+margin-top:20px;
+width:1920px;
+height:205px;}
+#liaoxi{
+	width:1100px;
+	margin:0 auto;
+	line-height:28px;
+	text-align:center;
+	font-size:14px;
+	}

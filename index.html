@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>崇睦堂 - 传承国学风水 为民解忧</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:"宋体",SimSun,"楷体",KaiTi,sans-serif;
+        }
+        body{
+            background:#f5f2eb;
+            color:#333;
+            line-height:1.6;
+        }
+        .container{
+            width:100%;
+            max-width:1200px;
+            margin:0 auto;
+            padding:0 20px;
+        }
+        h1,h2,h3{
+            font-family:"楷体",KaiTi,sans-serif;
+            color:#D32F2F;
+            font-weight:bold;
+            margin-bottom:20px;
+        }
+        h2{
+            border-bottom:2px solid #F5A623;
+            padding-bottom:10px;
+            display:inline-block;
+            margin-top:30px;
+        }
+        a{
+            text-decoration:none;
+            color:#D32F2F;
+        }
+        a:hover{
+            color:#FF6666;
+        }
+        .btn{
+            display:inline-block;
+            padding:8px 20px;
+            background:#D32F2F;
+            color:#fff;
+            border:none;
+            border-radius:4px;
+            cursor:pointer;
+            font-size:16px;
+            margin-right:10px;
+            transition:background 0.3s ease;
+        }
+        .btn:hover{
+            background:#B71C1C;
+        }
+        .btn-reset{
+            background:transparent;
+            border:1px solid #D32F2F;
+            color:#D32F2F;
+        }
+        .btn-reset:hover{
+            background:#FFEEEE;
+        }
+
+        /* 头部导航 - 统一多端基础样式 */
+        .header{
+            background:#D32F2F;
+            padding:20px 0;
+            position:sticky;
+            top:0;
+            z-index:999;
+        }
+        .nav{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            width:100%;
+        }
+        .logo{
+            font-size:40px;
+            color:#fff;
+            font-family:"楷体",KaiTi,sans-serif;
+            font-weight:bold;
+        }
+        .nav-menu{
+            display:flex;
+            list-style:none;
+            flex-wrap:wrap;
+        }
+        .nav-menu li{
+            margin-left:25px;
+        }
+        .nav-menu a{
+            color:#fff;
+            font-size:18px;
+            transition:color 0.3s ease;
+        }
+        .nav-menu a:hover{
+            color:#F5A623;
+        }
+
+        /* 轮播图样式 - 适配多端 */
+        .banner-slider{
+            position:relative;
+            height:400px;
+            overflow:hidden;
+            width:100%;
+        }
+        .slider-wrapper{
+            display:flex;
+            height:100%;
+            transition:transform 0.5s ease;
+            width: calc(100% * var(--slide-count)); /* 动态计算宽度 */
+        }
+        .slider-item{
+            width:100%;
+            height:100%;
+            background-size:cover;
+            background-position:center;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            color:#fff;
+            text-shadow:0 0 5px #333;
+        }
+        .slider-btn{
+            position:absolute;
+            top:50%;
+            transform:translateY(-50%);
+            width:40px;
+            height:40px;
+            background:rgba(0,0,0,0.5);
+            color:#fff;
+            border:none;
+            border-radius:50%;
+            font-size:20px;
+            cursor:pointer;
+            z-index:10;
+            transition:background 0.3s ease;
+        }
+        .slider-btn:hover{
+            background:rgba(0,0,0,0.7);
+        }
+        .prev-btn{
+            left:20px;
+        }
+        .next-btn{
+            right:20px;
+        }
+        .slider-indicators{
+            position:absolute;
+            bottom:20px;
+            left:50%;
+            transform:translateX(-50%);
+            display:flex;
+            gap:10px;
+        }
+        .indicator{
+            width:12px;
+            height:12px;
+            border-radius:50%;
+            background:rgba(255,255,255,0.5);
+            cursor:pointer;
+            transition:background 0.3s ease;
+        }
+        .indicator.active{
+            background:#D32F2F;
+        }
+
+        /* 关于我们 */
+        .intro{
+            padding:50px 0;
+            display:flex;
+            gap:50px;
+            flex-wrap:wrap;
+        }
+        .intro-left,.intro-right{
+            flex:1;
+            min-width:300px;
+        }
+        .intro-img{
+            width:100%;
+            max-width:300px;
+            height:auto;
+            border-radius:8px;
+            margin-bottom:20px;
+            box-shadow:0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        /* 入口卡片 */
+        .entry{
+            padding:30px 0;
+            display:flex;
+            gap:30px;
+            margin-bottom:30px;
+            flex-wrap:wrap;
+        }
+        .entry-card{
+            flex:1;
+            background:#fff;
+            padding:25px;
+            border-radius:8px;
+            box-shadow:0 2px 8px rgba(0,0,0,0.1);
+            text-align:center;
+            min-width:250px;
+            transition:box-shadow 0.3s ease;
+        }
+        .entry-card:hover{
+            box-shadow:0 4px 12px rgba(0,0,0,0.15);
+        }
+        .entry-card img{
+            width:80px;
+            height:80px;
+            margin-bottom:15px;
+            object-fit:contain;
+        }
+
+        /* 服务项目 */
+        .service-list{
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+            gap:25px;
+            margin:30px 0;
+        }
+        .service-item{
+            background:#fff;
+            padding:20px;
+            border-radius:6px;
+            box-shadow:0 1px 5px rgba(0,0,0,0.1);
+        }
+
+        /* 产品中心 */
+        .product-list{
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+            gap:30px;
+            margin:30px 0;
+        }
+        .product-item{
+            background:#fff;
+            padding:20px;
+            border-radius:6px;
+            box-shadow:0 1px 5px rgba(0,0,0,0.1);
+            text-align:center;
+        }
+        .product-item img{
+            width:150px;
+            height:150px;
+            margin-bottom:15px;
+            object-fit:contain;
+        }
+
+        /* 风水案例 */
+        #custom-content {
+            padding:40px 0;
+        }
+        .custom-list {
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+            gap:30px;
+            margin:30px 0;
+        }
+        .custom-item {
+            background:#fff;
+            padding:20px;
+            border-radius:8px;
+            box-shadow:0 2px 8px rgba(0,0,0,0.1);
+        }
+        .custom-item img {
+            width:100%;
+            height:200px;
+            object-fit:cover;
+            border-radius:6px;
+            margin-bottom:15px;
+        }
+        .custom-banner {
+            margin-top:50px;
+            background:#f9f9f9;
+            padding:30px;
+            border-radius:8px;
+        }
+        .custom-banner > div {
+            display:flex;
+            flex-wrap:wrap;
+            gap:30px;
+            align-items:center;
+        }
+        .custom-banner > div > div {
+            flex:1;
+            min-width:300px;
+        }
+        .custom-banner img {
+            width:100%;
+            height:auto;
+            border-radius:6px;
+        }
+
+        /* 留言反馈 */
+        .message-form{
+            background:#fff;
+            padding:30px;
+            border-radius:8px;
+            box-shadow:0 2px 8px rgba(0,0,0,0.1);
+            max-width:800px;
+            margin:30px auto;
+        }
+        .form-group{
+            margin-bottom:20px;
+        }
+        .form-group label{
+            display:block;
+            margin-bottom:8px;
+            color:#D32F2F;
+            font-weight:bold;
+        }
+        .form-group input,.form-group select,.form-group textarea{
+            width:100%;
+            padding:10px;
+            border:1px solid #ddd;
+            border-radius:4px;
+            font-size:16px;
+            transition:border 0.3s ease;
+        }
+        .form-group input:focus,.form-group select:focus,.form-group textarea:focus{
+            outline:none;
+            border-color:#D32F2F;
+        }
+        .form-group textarea{
+            height:150px;
+            resize:vertical;
+        }
+        .custom-comments h2 {
+            margin-top:40px;
+        }
+        .comment-item{
+            padding:15px;
+            border-bottom:1px solid #eee;
+            margin-bottom:15px;
+        }
+        .comment-name {
+            color:#D32F2F;
+            font-weight:bold;
+            margin-bottom:5px;
+        }
+        .comment-time {
+            color:#999;
+            font-size:12px;
+            margin-bottom:10px;
+        }
+
+        /* 联系我们 */
+        #contact {
+            margin:30px 0;
+        }
+        #contact > div {
+            text-align:center;
+            padding:30px 0;
+            background:#fff;
+            border-radius:8px;
+            box-shadow:0 2px 8px rgba(0,0,0,0.1);
+        }
+        #contact .phone {
+            font-size:18px;
+            font-weight:bold;
+            margin:15px 0;
+        }
+        #contact img {
+            max-width:150px;
+            height:auto;
+            margin:10px 0;
+        }
+
+        /* 页脚 */
+        .footer{
+            background:#D32F2F;
+            color:#fff;
+            padding:30px 0;
+            text-align:center;
+            margin-top:50px;
+        }
+        .footer .logo {
+            font-size:30px;
+            margin-bottom:10px;
+        }
+
+        /* 全局平滑滚动 */
+        html{
+            scroll-behavior:smooth;
+        }
+
+        /* ========== 媒体查询 - 分端适配（保持功能/文字一致） ========== */
+        /* 电脑端（≥1024px）- 基础样式已覆盖，此处仅补充细节 */
+        @media (min-width: 1024px) {
+            .slider-item h1 {
+                font-size:48px;
+                margin-bottom:15px;
+            }
+            .slider-item p {
+                font-size:20px;
+            }
+            .logo {
+                font-size:50px;
+            }
+            .nav-menu a {
+                font-size:20px;
+            }
+        }
+
+        /* 平板端（768px - 1023px） */
+        @media (max-width: 1023px) and (min-width: 768px) {
+            .banner-slider {
+                height:350px;
+            }
+            .slider-item h1 {
+                font-size:36px;
+            }
+            .slider-item p {
+                font-size:18px;
+            }
+            .logo {
+                font-size:40px;
+            }
+            .nav-menu li {
+                margin-left:20px;
+            }
+            .intro {
+                padding:40px 0;
+                gap:30px;
+            }
+        }
+
+        /* 手机端（≤767px） */
+        @media (max-width: 767px) {
+            .header {
+                padding:15px 0;
+            }
+            .nav {
+                flex-direction:column;
+                align-items:center;
+                gap:15px;
+            }
+            .logo {
+                font-size:30px;
+                margin-bottom:0;
+            }
+            .nav-menu {
+                justify-content:center;
+                gap:10px;
+            }
+            .nav-menu li {
+                margin-left:0;
+                margin:0 10px;
+            }
+            .nav-menu a {
+                font-size:16px;
+            }
+
+            .banner-slider {
+                height:250px;
+            }
+            .slider-item h1 {
+                font-size:24px;
+            }
+            .slider-item p {
+                font-size:14px;
+            }
+            .slider-btn {
+                width:30px;
+                height:30px;
+                font-size:16px;
+            }
+
+            .intro {
+                padding:30px 0;
+                gap:20px;
+            }
+            .intro-left, .intro-right {
+                min-width:100%;
+            }
+            .intro-img {
+                max-width:100%;
+            }
+
+            .entry {
+                padding:20px 0;
+                gap:20px;
+            }
+            .entry-card {
+                min-width:100%;
+            }
+
+            .message-form {
+                padding:20px;
+            }
+            .form-group input, .form-group select, .form-group textarea {
+                font-size:14px;
+                padding:8px;
+            }
+            .btn {
+                padding:6px 15px;
+                font-size:14px;
+                margin-bottom:10px;
+            }
+
+            .custom-banner {
+                padding:20px;
+            }
+            #contact img {
+                max-width:100px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 头部导航 -->
+<header class="header">
+    <div class="container nav">
+        <div class="logo">崇睦堂</div>
+        <ul class="nav-menu">
+            <li><a href="#home"><strong>首页</strong></a></li>
+            <li><a href="#about"><strong>大师简介</strong></a></li>
+            <li><a href="#service"><strong>服务项目</strong></a></li>
+            <li><a href="#product"><strong>通书罗盘</strong></a></li>
+            <li><a href="#custom-content"><strong>风水案例</strong></a></li>
+            <li><a href="#message"><strong>留言反馈</strong></a></li>
+            <li><a href="#contact"><strong>联系我们</strong></a></li>
+        </ul>
+    </div>
+</header>
+
+<!-- 轮播图区域 -->
+<section id="home" class="banner-slider">
+    <div class="slider-wrapper">
+        <div class="slider-item" style="background-image: url('static/picture/01.jpg');">
+            <h1>罗渊·崇睦堂</h1>
+            <p>传承国学风水 为民解忧</p>
+            <p>三百余年历史·世代相承</p>
+        </div>
+        <div class="slider-item" style="background-image: url('static/picture/02.jpg');">
+            <h1>罗渊·崇睦堂</h1>
+            <p>天人合一 善念善为</p>
+            <p>专业风水规划 择日起名</p>
+        </div>
+        <div class="slider-item" style="background-image: url('static/picture/03.jpg');">
+            <h1>罗渊·崇睦堂</h1>
+            <p>风水产品定制 厂家直供</p>
+            <p>罗盘·通书·吉祥物</p>
+        </div>
+        <div class="slider-item" style="background-image: url('static/picture/04.jpg');">
+            <h1>罗渊·崇睦堂</h1>
+            <p>经典风水案例 实地规划</p>
+            <p>墓地·祠堂·寺庙·住宅</p>
+        </div>
+    </div>
+    <button class="slider-btn prev-btn">&lt;</button>
+    <button class="slider-btn next-btn">&gt;</button>
+    <div class="slider-indicators">
+        <div class="indicator active" data-index="0"></div>
+        <div class="indicator" data-index="1"></div>
+        <div class="indicator" data-index="2"></div>
+        <div class="indicator" data-index="3"></div>
+    </div>
+</section>
+
+<!-- 主体内容 -->
+<section class="container">
+    <!-- 关于我们 -->
+    <div class="intro" id="about">
+        <div class="intro-left">
+            <img src="static/picture/05.jpg" alt="罗渊先生" class="intro-img">
+            <br><h2><a href="https://www.baike.com/wikiid/7383878998840148005?module_name=Android_tt_others&tt_from=wechat&upstream_biz=Android_wechat&utm_campaign=client_share&utm_medium=toutiao_android&utm_source=wechat&share_token=d46ee9f6-b8a7-48ef-abbc-28f694d16e09&anchor=reference_list_title" title="抖音百科" target="_blank">关于罗渊先生</a></h2>
+            <p>罗渊先生，字深广，号莫测先生，祖籍广东兴宁，生于广东省兴宁市福兴街道办黄畿村通书罗屋，兴宁罗家择日正宗嫡传人土，系广东省省级非物质文化遗产.兴宁罗家通书推算法第九代传承人，择日师、地理先生、高级堪舆师，易学研究者。<br>先生是罗家宗睦堂·集福堂文化推广创办人、中国建筑家居布局研究院高级研究员、国际易学联合专业委员会荣誉会员、华夏易经文化研究院岭南分院副会长、港澳台堪舆学交流协会外联部特约联络员。<br>罗渊自幼随父学习及编撰推算罗家通书至今。曾在罗家通书的知识基础上，大量研读择日学和地理学的名著。<br>近十年，罗渊走遍全国各地寻求山水真谛，特别是潮汕地区，海陆丰地区，梅州地区，河源地区，赣州地区，广西地区，福建地区，北京地区，江浙地区等，在建造、修缮、布局祠堂、阴宅、阳宅、政府机关、商品楼盘、公司厂房、 学校、寺庙等，均有堪舆实例。<a href="https://www.baike.com/wikiid/7383878998840148005?module_name=Android_tt_others&tt_from=wechat&upstream_biz=Android_wechat&utm_campaign=client_share&utm_medium=toutiao_android&utm_source=wechat&share_token=d46ee9f6-b8a7-48ef-abbc-28f694d16e09&anchor=lxscuo1jpgt" target="_blank">查看更多详情.....</a></p>
+        </div>
+        <div class="intro-right">
+            <img src="static/picture/09.jpg" alt="罗渊先生" class="intro-img">
+			<br><h2>崇睦堂理念</h2>
+			
+            <br><p>崇睦堂秉持“天人合一”核心理念，主张“随心随缘，善念善为”，整合传统国学与现代科学，承三百余年通书推算历史，世代相承天星六壬正宗斗首奇门演禽诸家吉课，精益求精。崇睦堂秉持“天人合一”核心理念，主张“随心随缘，善念善为”，整合传统国学与现代科学，承三百余年通书推算历史，世代相承天星六壬正宗斗首奇门演禽诸家吉课，精益求精。</p>
+        </div>
+    </div>
+
+    <!-- 入口卡片 -->
+    <div class="entry">
+        <div class="entry-card">
+            <img src="static/picture/06.jpg" alt="择日须知">
+            <h3>风水咨询服务</h3>
+            <p>调理·择日·规划·预测·起名</p>
+            <a href="#service" class="btn">查看详情</a>
+        </div>
+        <div class="entry-card">
+            <img src="static/picture/07.jpg" alt="通书罗盘">
+            <h3>风水产品定制</h3>
+            <p>罗盘·通书·吉祥物（支持定制）</p>
+            <a href="#product" class="btn">查看详情</a>
+        </div>
+        <div class="entry-card">
+            <img src="static/picture/08.jpg" alt="风水案例">
+            <h3>经典风水案例</h3>
+            <p>墓地·祠堂·寺庙·住宅风水实例</p>
+            <a href="#custom-content" class="btn">查看详情</a> <!-- 修复锚点指向错误 -->
+        </div>
+    </div>
+
+    <!-- 服务项目 -->
+    <section id="service">
+        <h2>服务项目</h2>
+        <div class="service-list">
+            <div class="service-item">
+                <h3>风水调理</h3>
+                <p>针对住宅、商铺、企业等场景，调整布局与方位，改善空间风水运势。</p>
+            </div>
+            <div class="service-item">
+                <h3>风水择日</h3>
+                <p>为婚丧嫁娶、开业动工等事宜，择选吉祥日期与时辰，规避不利因素。</p>
+            </div>
+            <div class="service-item">
+                <h3>风水规划</h3>
+                <p>涵盖墓地、祠堂、寺庙、楼盘等项目，确保空间与自然环境和谐。</p>
+            </div>
+            <div class="service-item">
+                <h3>风水预测</h3>
+                <p>分析事业、家庭、健康趋势，提供针对性建议，规避风险、把握机遇。</p>
+            </div>
+            <div class="service-item">
+                <h3>专业起名</h3>
+                <p>个人起名、企业命名、品牌取名，结合五行命理与国学文化。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 产品中心 -->
+    <section id="product">
+        <h2>产品中心</h2>
+        <div class="product-list">
+            <div class="product-item">
+                <img src="static/picture/10.jpg" alt="风水罗盘"> <!-- 统一图片路径 -->
+                <h3>风水罗盘</h3>
+                <p>材质：红木、电木、铜皮等<br>尺寸：5寸至尺半<br>支持定制，厂家直供</p>
+            </div>
+            <div class="product-item">
+                <img src="static/picture/11.jpg" alt="通书日历"> <!-- 统一图片路径 -->
+                <h3>通书日历</h3>
+                <p>含节气、吉时、宜忌、命理解析，排版清晰，实用性强。</p>
+            </div>
+            <div class="product-item">
+                <img src="static/picture/12.jpg" alt="风水吉祥物"> <!-- 统一图片路径 -->
+                <h3>风水吉祥物</h3>
+                <p>罗盘摆件、风水镜、吉祥挂件等，适用于住宅、商铺、办公室。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 风水案例 -->
+    <section id="custom-content">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 30px; color: #333;">罗渊先生风水案例</h2>
+            
+            <div class="custom-list">
+                <div class="custom-item">
+                    <img src="static/picture/01.jpg" alt="图片描述1">
+                    <h3>项目标题1</h3>
+                    <p>这里可以在这里编辑第一段图文内容，根据需要调整文字多少，支持换行和基本排版。</p>
+                </div>
+                <div class="custom-item">
+                    <img src="static/picture/02.jpg" alt="图片描述2">
+                    <h3>项目标题2</h3>
+                    <p>第二段图文内容，自由编辑文字内容，可根据实际需求增减段落或调整样式。</p>
+                </div>
+                <div class="custom-item">
+                    <img src="static/picture/03.jpg" alt="图片描述3">
+                    <h3>项目标题3</h3>
+                    <p>第三段内容，如需更多图文项，直接复制整个.custom-item块即可。</p>
+                </div>
+            </div>
+
+            <div class="custom-banner">
+                <div>
+                    <div>
+                        <img src="static/picture/04.jpg" alt="大图描述">
+                    </div>
+                    <div>
+                        <h3>大图配套文字标题</h3>
+                        <p>
+                            这里可以放置与大图配套的详细文字内容，支持多行排版。<br>
+                            可以根据需要添加更多段落，自由编辑文字内容和格式。<br>
+                            适合展示重要信息或详细介绍。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 留言反馈 -->
+    <section id="message" class="message-form">
+        <h2>留言反馈</h2>
+        <form id="msgForm" action="https://formspree.io/f/你的FormspreeID" method="POST">
+            <div class="form-group">
+                <label for="name">姓名（必填）</label>
+                <input type="text" id="name" name="name" required placeholder="请输入姓名">
+            </div>
+            <div class="form-group">
+                <label for="phone">联系电话（必填）</label>
+                <input type="tel" id="phone" name="phone" required placeholder="请输入电话">
+            </div>
+            <div class="form-group">
+                <label for="theme">留言主题</label>
+                <select id="theme" name="theme" required>
+                    <option value="">请选择</option>
+                    <option value="fengshui">风水咨询</option>
+                    <option value="product">产品定制</option>
+                    <option value="case">案例了解</option>
+                    <option value="other">其他</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="content">留言内容（必填）</label>
+                <textarea id="content" name="content" required placeholder="请输入需求"></textarea>
+            </div>
+            <button type="submit" class="btn">提交留言</button>
+            <button type="reset" class="btn btn-reset">重置</button>
+        </form>
+
+        <div class="custom-comments">
+            <h2>客户评价</h2>
+            <div class="comment-item">
+                <div class="comment-name">陈先生（普宁）</div>
+                <div class="comment-time">2024-03-15</div>
+                <div class="comment-content">罗渊先生帮我家规划了墓地风水，非常专业，现场讲解很细致，选的位置家人都很满意，推荐给有需要的朋友！</div>
+            </div>
+            <div class="comment-item">
+                <div class="comment-name">李女士（汕头）</div>
+                <div class="comment-time">2024-04-22</div>
+                <div class="comment-content">找罗渊先生给孩子起了名字，结合了五行和国学寓意，名字好听又有内涵，还顺便咨询了住宅风水，给的建议很实用，感谢！</div>
+            </div>
+            <div class="comment-item">
+                <div class="comment-name">张先生（湛江）</div>
+                <div class="comment-time">2024-05-30</div>
+                <div class="comment-content">祠堂重建找的崇睦堂，罗渊先生全程跟进，从布局到择日都很用心，完工后家族人都觉得气场好，值得信赖！</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section id="contact">
+        <h2>联系我们</h2>
+        <div>
+            <p class="phone">咨询热线：19926133020</p>
+            <p>服务承诺：任何项目服务至客户满意为止</p>
+            <img src="static/picture/13.jpg" alt="非遗">&nbsp;&nbsp;&nbsp;<img src="static/picture/erweima.jpg" alt="二维码">&nbsp;&nbsp;&nbsp;<img src="static/picture/15.jpg" alt="证书">
+            <p style="margin-top:20px;font-size:18px;color:#D32F2F;font-weight:bold;">天人合一·善念善为</p>
+        </div>
+    </section>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="logo">崇睦堂</div>
+        <p>咨询热线：19926133020</p>
+        <p>崇睦堂 版权所有 © 2025传承国学风水 为民解忧</p>
+    </div>
+</footer>
+
+<script>
+    // 初始化轮播图数量（解决宽度硬编码问题）
+    const slideItems = document.querySelectorAll('.slider-item');
+    const slideCount = slideItems.length;
+    document.querySelector('.slider-wrapper').style.setProperty('--slide-count', slideCount);
+
+    // 留言表单提交逻辑（保持功能一致）
+    document.getElementById('msgForm').addEventListener('submit',function(e){
+        e.preventDefault();
+        const name=document.getElementById('name').value;
+        alert(`您好，${name}！留言已提交，崇睦堂将尽快联系您！`);
+        this.reset();
+    });
+
+    // 轮播图核心逻辑
+    const sliderWrapper = document.querySelector('.slider-wrapper');
+    const indicators = document.querySelectorAll('.indicator');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    let currentIndex = 0;
+
+    function updateSlider() {
+        // 动态计算位移，适配任意数量轮播图
+        sliderWrapper.style.transform = `translateX(-${(100 / slideCount) * currentIndex}%)`;
+        // 更新指示器状态
+        indicators.forEach((item, index) => {
+            item.classList.toggle('active', index === currentIndex);
+        });
+    }
+
+    // 下一张/上一张按钮
+    nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % slideCount;
+        updateSlider();
+    });
+    prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+        updateSlider();
+    });
+
+    // 指示器点击
+    indicators.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            currentIndex = index;
+            updateSlider();
+        });
+    });
+
+    // 自动轮播
+    let autoPlayTimer = setInterval(() => {
+        currentIndex = (currentIndex + 1) % slideCount;
+        updateSlider();
+    }, 3000);
+
+    // 鼠标悬停暂停自动轮播（提升体验）
+    document.querySelector('.banner-slider').addEventListener('mouseenter', () => {
+        clearInterval(autoPlayTimer);
+    });
+    document.querySelector('.banner-slider').addEventListener('mouseleave', () => {
+        autoPlayTimer = setInterval(() => {
+            currentIndex = (currentIndex + 1) % slideCount;
+            updateSlider();
+        }, 3000);
+    });
+
+    // 移动端触摸滑动（修复方向颠倒问题）
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const swipeThreshold = 50;
+
+    document.querySelector('.banner-slider').addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        clearInterval(autoPlayTimer); // 触摸时暂停自动轮播
+    }, false);
+
+    document.querySelector('.banner-slider').addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+        autoPlayTimer = setInterval(() => { // 触摸结束恢复自动轮播
+            currentIndex = (currentIndex + 1) % slideCount;
+            updateSlider();
+        }, 3000);
+    }, false);
+
+    // 修复滑动方向逻辑
+    function handleSwipe() {
+        const diffX = touchEndX - touchStartX;
+        if (diffX > swipeThreshold) {
+            // 从左向右滑 → 上一张
+            currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+            updateSlider();
+        } else if (diffX < -swipeThreshold) {
+            // 从右向左滑 → 下一张
+            currentIndex = (currentIndex + 1) % slideCount;
+            updateSlider();
+        }
+    }
+</script>
+</body>
+</html>
